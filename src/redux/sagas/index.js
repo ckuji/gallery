@@ -15,6 +15,7 @@ const waiter = (value) =>
 
 export function* setCategories() {
   const data = yield call(loadData)
+  yield waiter(500)
   yield put({ type: "SET_IMAGES_TO_CAT_1", payload: data.slice(0, 6) })
   yield put({ type: "SET_IMAGES_TO_CAT_2", payload: data.slice(6, 12) })
   yield put({ type: "SET_IMAGES_TO_CAT_3", payload: data.slice(12, 18) })
@@ -23,7 +24,6 @@ export function* setCategories() {
 
 export function* workerSaga() {
   yield call(setCategories)
-  yield waiter(500)
   yield put({ type: "PRELOADER_TO_FALSE" })
 }
 
