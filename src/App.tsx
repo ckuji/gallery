@@ -8,22 +8,26 @@ import {
 import Main from "./pages/Main"
 import AboutMe from "./pages/AboutMe"
 import ImageInfo from "./pages/ImageInfo"
+import { Provider } from "react-redux"
+import store from "./redux"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/main" element={<Main />} />
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/main" element={<Main />} />
 
-        <Route path="/about_me" element={<AboutMe />} />
+          <Route path="/about_me" element={<AboutMe />} />
 
-        <Route path="/info" element={<ImageInfo />} />
+          <Route path="/info" element={<ImageInfo />} />
 
-        <Route path="/" element={<Navigate to="/main" />} />
-      </Routes>
-    </Router>
+          <Route path="/" element={<Navigate to="/main" />} />
+        </Routes>
+      </Router>
+    </Provider>
   )
 }
 
