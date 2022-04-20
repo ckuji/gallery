@@ -1,7 +1,12 @@
 import React from "react"
+import HeaderNav from "../components/Navbar"
 
 const Main: React.FC = () => {
-  return <div>Main page</div>
+  return (
+    <>
+      <HeaderNav />
+    </>
+  )
 }
 
 export default Main
