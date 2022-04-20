@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Image from "react-bootstrap/Image"
 import { Nav } from "react-bootstrap"
 
@@ -23,17 +23,28 @@ const Images: React.FC<ImagesToProps> = ({
   category3,
   category4,
 }) => {
-  const categories = ["category1", "category2", "category3", "category4"]
+  const categoriesNames = ["category1", "category2", "category3", "category4"]
+  const categoriesValues = [category1, category2, category3, category4]
+  const [currentCategory, setCurrentCategory] = useState(0)
+
+  const onCatClickHandler = (index: number): void => {
+    setCurrentCategory(index)
+  }
 
   return (
     <div className="contentWrapper">
-      <Nav defaultActiveKey="/home" className="flex-column">
-        {categories.map((item, index) => (
-          <Nav.Link>{item}</Nav.Link>
+      <Nav defaultActiveKey="/home" className="flex-column navCatWrapper">
+        {categoriesNames.map((item, index) => (
+          <Nav.Link
+            key={`${item}_${index}`}
+            onClick={() => onCatClickHandler(index)}
+          >
+            {item}
+          </Nav.Link>
         ))}
       </Nav>
       <div>
-        {category1.map((item) => (
+        {categoriesValues[currentCategory].map((item) => (
           <Image src={item.url} key={item.id} thumbnail className="image" />
         ))}
       </div>

@@ -16,6 +16,10 @@ code {
   display: flex;
 }
 
+.navCatWrapper {
+  width: 200px;
+}
+
 .image {
   width: 200px;
 }

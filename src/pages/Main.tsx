@@ -25,9 +25,9 @@ const Main: React.FC = () => {
       {!store.preloaderShow && (
         <Images
           category1={store.category1}
-          category2={store.category1}
-          category3={store.category1}
-          category4={store.category1}
+          category2={store.category2}
+          category3={store.category3}
+          category4={store.category4}
         />
       )}
     </>
