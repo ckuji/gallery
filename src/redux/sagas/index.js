@@ -1,5 +1,5 @@
 import axios from "axios"
-import { call, fork, put, takeEvery } from "redux-saga/effects"
+import { all, call, fork, put, takeEvery } from "redux-saga/effects"
 
 async function loadData() {
   const fetched = await axios.get(
@@ -27,10 +27,25 @@ export function* workerSaga() {
   yield put({ type: "PRELOADER_TO_FALSE" })
 }
 
+export function* infoSagaWorker(action) {
+  async function loadImageById() {
+    const fetched = await axios.get(
+      `https://jsonplaceholder.typicode.com/photos/${action.payload}`
+    )
+    return fetched.data
+  }
+  const dataImage = yield call(loadImageById)
+  console.log(dataImage)
+}
+
 export function* watchLoadImages() {
   yield takeEvery("LOAD_IMAGES", workerSaga)
 }
 
+export function* watchLoadImageInfo() {
+  yield takeEvery("LOAD_IMAGE_INFO", infoSagaWorker)
+}
+
 export default function* rootSaga() {
-  yield fork(watchLoadImages)
+  yield all([watchLoadImages(), watchLoadImageInfo()])
 }
