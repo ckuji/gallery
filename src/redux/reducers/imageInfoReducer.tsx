@@ -1,5 +1,6 @@
 const initialState: any = {
   info: {},
+  loadShow: true,
 }
 
 export const Info = (state = initialState, action: any) => {
@@ -8,6 +9,12 @@ export const Info = (state = initialState, action: any) => {
       return {
         ...state,
         info: action.payload,
+      }
+    }
+    case "SET_PRELOADER_FOR_INFO_FALSE": {
+      return {
+        ...state,
+        loadShow: false,
       }
     }
     default:

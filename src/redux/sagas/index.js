@@ -37,6 +37,7 @@ export function* infoSagaWorker(action) {
   const dataImage = yield call(loadImageById)
   yield waiter(500)
   yield put({ type: "SET_IMAGE_INFO", payload: dataImage })
+  yield put({ type: "SET_PRELOADER_FOR_INFO_FALSE" })
 }
 
 export function* watchLoadImages() {
