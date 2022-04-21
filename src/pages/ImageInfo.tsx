@@ -17,6 +17,10 @@ const ImageInfo: React.FC = () => {
 
   useEffect(() => {
     dispatch({ type: "LOAD_IMAGE_INFO", payload: imageId })
+
+    return () => {
+      dispatch({ type: "UNSET_PRELOADER_FOR_INFO_FALSE" })
+    }
   }, [dispatch, imageId])
 
   return (

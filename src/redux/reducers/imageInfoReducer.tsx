@@ -17,6 +17,12 @@ export const Info = (state = initialState, action: any) => {
         loadShow: false,
       }
     }
+    case "UNSET_PRELOADER_FOR_INFO_FALSE": {
+      return {
+        ...state,
+        loadShow: true,
+      }
+    }
     default:
       return state
   }
