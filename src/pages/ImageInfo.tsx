@@ -1,7 +1,13 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { Spinner, Card } from "react-bootstrap"
+import { useParams, NavLink } from "react-router-dom"
+import {
+  Spinner,
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Button,
+} from "react-bootstrap"
 
 const ImageInfo: React.FC = () => {
   const imageId = useParams().id
@@ -14,20 +20,29 @@ const ImageInfo: React.FC = () => {
   }, [dispatch, imageId])
 
   return (
-    <div>
-      {fetched.Info.loadShow && (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )}
-      {!fetched.Info.loadShow && (
-        <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={fetched.Info.info.url} />
-          <Card.Body>
-            <Card.Title>{fetched.Info.info.title}</Card.Title>
-          </Card.Body>
-        </Card>
-      )}
+    <div className="imageInfoWrapper">
+      <div className="imageInfo">
+        {fetched.Info.loadShow && (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
+        {!fetched.Info.loadShow && (
+          <Card style={{ width: "18rem" }}>
+            <Card.Img variant="top" src={fetched.Info.info.url} />
+            <Card.Body>
+              <Card.Title>{fetched.Info.info.title}</Card.Title>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>{`id: ${fetched.Info.info.id}`}</ListGroupItem>
+              <ListGroupItem>{`ссылка: ${fetched.Info.info.url}`}</ListGroupItem>
+            </ListGroup>
+          </Card>
+        )}
+      </div>
+      <NavLink to="/main">
+        <Button variant="primary">Назад</Button>
+      </NavLink>
     </div>
   )
 }
