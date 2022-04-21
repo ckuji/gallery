@@ -16,18 +16,18 @@ const Main: React.FC = () => {
     <>
       <HeaderNav />
 
-      {store.preloaderShow && (
+      {store.Images.preloaderShow && (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       )}
 
-      {!store.preloaderShow && (
+      {!store.Images.preloaderShow && (
         <Images
-          category1={store.category1}
-          category2={store.category2}
-          category3={store.category3}
-          category4={store.category4}
+          category1={store.Images.category1}
+          category2={store.Images.category2}
+          category3={store.Images.category3}
+          category4={store.Images.category4}
         />
       )}
     </>

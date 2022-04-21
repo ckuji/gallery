@@ -51,8 +51,8 @@ const Images: React.FC<ImagesToProps> = ({
       </Nav>
       <div>
         {categoriesValues[currentCategory].map((item) => (
-          <div className="imageWrapper">
-            <Image src={item.url} key={item.id} className="image" thumbnail />
+          <div className="imageWrapper" key={item.id}>
+            <Image src={item.url} className="image" thumbnail />
             <Toast
               className="imageHint"
               onClick={() => toImageInfoHandler(item.id)}

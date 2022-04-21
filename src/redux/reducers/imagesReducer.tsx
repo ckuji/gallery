@@ -11,25 +11,25 @@ export const Images = (state = initialState, action: any) => {
     case "SET_IMAGES_TO_CAT_1": {
       return {
         ...state,
-        category1: [...state.category1, ...action.payload],
+        category1: action.payload,
       }
     }
     case "SET_IMAGES_TO_CAT_2": {
       return {
         ...state,
-        category2: [...state.category2, ...action.payload],
+        category2: action.payload,
       }
     }
     case "SET_IMAGES_TO_CAT_3": {
       return {
         ...state,
-        category3: [...state.category3, ...action.payload],
+        category3: action.payload,
       }
     }
     case "SET_IMAGES_TO_CAT_4": {
       return {
         ...state,
-        category4: [...state.category4, ...action.payload],
+        category4: action.payload,
       }
     }
     case "PRELOADER_TO_FALSE": {

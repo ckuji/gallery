@@ -1,5 +1,5 @@
 import axios from "axios"
-import { all, call, fork, put, takeEvery } from "redux-saga/effects"
+import { all, call, put, takeEvery } from "redux-saga/effects"
 
 async function loadData() {
   const fetched = await axios.get(
@@ -35,7 +35,8 @@ export function* infoSagaWorker(action) {
     return fetched.data
   }
   const dataImage = yield call(loadImageById)
-  console.log(dataImage)
+  yield waiter(500)
+  yield put({ type: "SET_IMAGE_INFO", payload: dataImage })
 }
 
 export function* watchLoadImages() {
