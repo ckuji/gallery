@@ -1,6 +1,7 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Image from "react-bootstrap/Image"
-import { Nav } from "react-bootstrap"
+import { Nav, Toast } from "react-bootstrap"
 
 interface IImage {
   albumId: number
@@ -26,6 +27,11 @@ const Images: React.FC<ImagesToProps> = ({
   const categoriesNames = ["category1", "category2", "category3", "category4"]
   const categoriesValues = [category1, category2, category3, category4]
   const [currentCategory, setCurrentCategory] = useState(0)
+  const navigate = useNavigate()
+
+  const toImageInfoHandler = (id: number): void => {
+    navigate(`/info/${id}`)
+  }
 
   const onCatClickHandler = (index: number): void => {
     setCurrentCategory(index)
@@ -45,7 +51,15 @@ const Images: React.FC<ImagesToProps> = ({
       </Nav>
       <div>
         {categoriesValues[currentCategory].map((item) => (
-          <Image src={item.url} key={item.id} thumbnail className="image" />
+          <div className="imageWrapper">
+            <Image src={item.url} key={item.id} className="image" thumbnail />
+            <Toast
+              className="imageHint"
+              onClick={() => toImageInfoHandler(item.id)}
+            >
+              <Toast.Body>Подробнее</Toast.Body>
+            </Toast>
+          </div>
         ))}
       </div>
     </div>

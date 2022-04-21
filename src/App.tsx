@@ -11,8 +11,6 @@ import ImageInfo from "./pages/ImageInfo"
 import { Provider } from "react-redux"
 import store from "./redux"
 
-import "bootstrap/dist/css/bootstrap.min.css"
-
 const App: React.FC = () => {
   return (
     <Provider store={store}>
@@ -22,7 +20,7 @@ const App: React.FC = () => {
 
           <Route path="/about_me" element={<AboutMe />} />
 
-          <Route path="/info" element={<ImageInfo />} />
+          <Route path="/info/:id" element={<ImageInfo />} />
 
           <Route path="/" element={<Navigate to="/main" />} />
         </Routes>

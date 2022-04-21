@@ -23,3 +23,22 @@ code {
 .image {
   width: 200px;
 }
+
+.imageHint {
+  width: 200px;
+  display: none;
+  position: absolute;
+  top: -47px;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.imageWrapper:hover .imageHint {
+  display: block;
+}
