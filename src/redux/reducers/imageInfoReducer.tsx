@@ -1,29 +1,25 @@
-const initialState: any = {
-  info: {},
-  loadShow: true,
-}
+import { createAction, createReducer } from "@reduxjs/toolkit"
 
-export const Info = (state = initialState, action: any) => {
-  switch (action.type) {
-    case "SET_IMAGE_INFO": {
-      return {
-        ...state,
-        info: action.payload,
-      }
-    }
-    case "SET_PRELOADER_FOR_INFO_FALSE": {
-      return {
-        ...state,
-        loadShow: false,
-      }
-    }
-    case "UNSET_PRELOADER_FOR_INFO_FALSE": {
-      return {
-        ...state,
-        loadShow: true,
-      }
-    }
-    default:
-      return state
+const setImageInfo = createAction<any>("SET_IMAGE_INFO")
+const setLoadShowFalse = createAction<any>("SET_PRELOADER_FOR_INFO_FALSE")
+const setLoadShowTrue = createAction<any>("UNSET_PRELOADER_FOR_INFO_FALSE")
+
+const Info = createReducer(
+  {
+    info: {},
+    loadShow: true,
+  },
+  (builder) => {
+    builder.addCase(setImageInfo, (state, action) => {
+      state.info = action.payload
+    })
+    builder.addCase(setLoadShowFalse, (state) => {
+      state.loadShow = false
+    })
+    builder.addCase(setLoadShowTrue, (state) => {
+      state.loadShow = true
+    })
   }
-}
+)
+
+export default Info

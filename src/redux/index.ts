@@ -1,18 +1,18 @@
-import {
-  legacy_createStore as createStore,
-  applyMiddleware,
-  combineReducers,
-} from "redux"
+import { configureStore } from "@reduxjs/toolkit"
 import createSagaMiddleware from "@redux-saga/core"
-import { Images } from "./reducers/imagesReducer"
-import { Info } from "./reducers/imageInfoReducer"
+import Images from "./reducers/imagesReducer"
+import Info from "./reducers/imageInfoReducer"
 import rootSaga from "./sagas"
 
 const sagaMiddleware = createSagaMiddleware()
 
-const rootReducer = combineReducers({ Images, Info })
+const reducer = { Images, Info }
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+const store = configureStore({
+  reducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+})
 
 sagaMiddleware.run(rootSaga)
 

@@ -1,13 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, NavLink } from "react-router-dom"
-import {
-  Spinner,
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Button,
-} from "react-bootstrap"
+import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap"
 import Loader from "../components/Loader"
 
 const ImageInfo: React.FC = () => {
