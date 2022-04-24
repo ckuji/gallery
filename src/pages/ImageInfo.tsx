@@ -8,12 +8,12 @@ import {
   ListGroupItem,
   Button,
 } from "react-bootstrap"
+import Loader from "../components/Loader"
 
 const ImageInfo: React.FC = () => {
   const imageId = useParams().id
   const dispatch = useDispatch()
   const fetched: any = useSelector((store) => store)
-  console.log(fetched.Info.info)
 
   useEffect(() => {
     dispatch({ type: "LOAD_IMAGE_INFO", payload: imageId })
@@ -26,11 +26,7 @@ const ImageInfo: React.FC = () => {
   return (
     <div className="imageInfoWrapper">
       <div className="imageInfo">
-        {fetched.Info.loadShow && (
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        )}
+        {fetched.Info.loadShow && <Loader />}
         {!fetched.Info.loadShow && (
           <Card style={{ width: "18rem" }}>
             <Card.Img variant="top" src={fetched.Info.info.url} />

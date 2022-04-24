@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import HeaderNav from "../components/Navbar"
-import { Spinner } from "react-bootstrap"
 import Images from "../components/Images"
+import Loader from "../components/Loader"
 
 const Main: React.FC = () => {
   const dispatch = useDispatch()
@@ -16,11 +16,7 @@ const Main: React.FC = () => {
     <>
       <HeaderNav />
 
-      {store.Images.preloaderShow && (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )}
+      {store.Images.preloaderShow && <Loader />}
 
       {!store.Images.preloaderShow && (
         <Images
