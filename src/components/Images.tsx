@@ -2,21 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Image from "react-bootstrap/Image"
 import { Nav, Toast } from "react-bootstrap"
-
-interface IImage {
-  albumId: number
-  id: number
-  thumbnailUrl: string
-  title: string
-  url: string
-}
-
-type ImagesToProps = {
-  category1: IImage[]
-  category2: IImage[]
-  category3: IImage[]
-  category4: IImage[]
-}
+import { ImagesToProps } from "../types/types"
 
 const Images: React.FC<ImagesToProps> = ({
   category1,
